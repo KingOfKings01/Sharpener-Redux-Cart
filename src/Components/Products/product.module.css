@@ -1,0 +1,48 @@
+.productsSection{
+    color: #fff;
+}
+
+.title{
+    margin: 20px 0;
+}
+
+.card{
+    background: #fff;
+    color: #000;
+    padding: 20px;
+    text-align: start;
+    border-radius: 5px;
+    width: 40vw;
+
+    div{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+    }
+
+    .end{
+        margin-top: 20px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    button{
+        background: #09a0b7;
+        color: #fff;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        font: 0.8em sans-serif;
+        transition: background 0.3s ease-in-out;
+        border: 1px solid #09a0b7;
+        outline: none;
+    }
+
+    button:hover{
+        color: #09a0b7;
+        background: #fff;
+        border: 1px solid #09a0b7;
+    }
+    
+}
