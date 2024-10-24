@@ -14,7 +14,7 @@ export default function Products() {
             <h3 className={classes.title}>BUY YOUR FAVORITE PRODUCTS</h3>
 
             <div className={classes.card}>
-                {products.length > 0 ? products.map(product => <>
+                {products.length > 0 ? products.map(product => <div key={product.id}>
 
                     <div>
                         <h4>{product.title}</h4>
@@ -30,7 +30,7 @@ export default function Products() {
                     </div>
 
                     <hr />
-                </>) : <p>No product</p>}
+                </div>) : <p>No product</p>}
 
             </div>
         </section>

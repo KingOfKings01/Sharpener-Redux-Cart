@@ -6,8 +6,6 @@ export default function Notification() {
 
     if (!notification) return null
 
-    // console.log(notification);
-
     const statusClass = () => { 
         switch(notification.status){
             case 'Success':

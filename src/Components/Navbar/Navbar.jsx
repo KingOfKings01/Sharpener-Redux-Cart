@@ -3,13 +3,15 @@ import classes from "./navbar.module.css"
 import { cartActions } from "../../Store/Reducers/cartReducer"
 export default function Navbar() {
 
-  const totalProducts = useSelector(state => state.cart.totalProducts)
+  const {products} = useSelector(state => state.cart)
 
   const dispatch = useDispatch()
 
   const toggleCart = () => {
     dispatch(cartActions.toggleCart())
   }
+
+  const totalProducts = products.reduce((total, product) => total + product.quantity, 0)
 
   return (
     <header className={classes.header}>

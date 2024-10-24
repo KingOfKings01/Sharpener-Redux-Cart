@@ -3,51 +3,34 @@ import './App.css'
 import Cart from './Components/Cart/Cart'
 import Navbar from './Components/Navbar/Navbar'
 import Products from './Components/Products/Products'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Notification from './Components/Notification/Notification'
-import { cartActions } from './Store/Reducers/cartReducer'
+import { fetchCartData, sentCartData } from './Store/Reducers/cartReducer'
 
+
+let isInitial = true
 
 function App() {
-  const { isCartOpen, products, notification } = useSelector(state => state.cart)
+  const { isCartOpen, products, notification, isChanged } = useSelector(state => state.cart)
   const dispatch = useDispatch()
+  // const [isInitial, setIsInitial] = useState(true);
 
   useEffect(() => {
-    
-    async function putCartToDB() {
-      dispatch(cartActions.showNotifications({
-        status: 'Sending',
-        message: 'Sending cart data!',
-      }))
-      try {
-        const response = await fetch(import.meta.env.VITE_FIREBASE_PATH + '/cart.json', {
-          method: "PUT",
-          body: JSON.stringify(products)
-        })
+    dispatch(fetchCartData())
+  }, [dispatch]);
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`)
-        }
-
-        dispatch(cartActions.showNotifications({
-          status: 'Success',
-          message: 'Sent cart data!',
-        }))
-
-      } catch (error) {
-        console.error(error.message);
-        dispatch(cartActions.showNotifications({
-          status: 'Error',
-          message: 'Failed to send cart data!',
-        }))
-      }
+  useEffect(() => {
+    if (isInitial) {
+      isInitial = false
+      // setIsInitial(false);
+      return
     }
-    putCartToDB()
+
+    if (isChanged) {
+      dispatch(sentCartData(products))
+    }
 
   }, [products, dispatch]);
-
-
-  console.log(notification);
 
   return (
     <>
