@@ -1,30 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialCartState = {
   isCartOpen: false,
-
-  products: [
-    {
-      id: 1,
-      title: "Product 1",
-      price: 10.0,
-      quantity: 1,
-      description: "This is a test product",
-    },
-    {
-      id: 2,
-      title: "Product 2",
-      price: 20.0,
-      quantity: 2,
-      description: "Another test product",
-    },
-  ],
-
-  totalProducts: 3,
+  products: [],
+  totalProducts: 0,
+  notification : null
 };
 
 const cartSlice = createSlice({
   name: "cart",
   initialState: initialCartState,
+
   reducers: {
     toggleCart: (state) => {
       state.isCartOpen = !state.isCartOpen;
@@ -40,7 +25,7 @@ const cartSlice = createSlice({
         state.products.push({ ...action.payload, quantity: 1 });
       }
       state.totalProducts++;
-      return state
+      return state;
     },
 
     removeProduct: (state, action) => {
@@ -69,6 +54,7 @@ const cartSlice = createSlice({
 
       return state;
     },
+
     decreaseQuantity: (state, action) => {
       const product = state.products.find(
         (product) => product.id === action.payload
@@ -87,6 +73,10 @@ const cartSlice = createSlice({
 
       return state;
     },
+
+    showNotifications: (state, action) => {
+      state.notification = action.payload;
+    }
   },
 });
 

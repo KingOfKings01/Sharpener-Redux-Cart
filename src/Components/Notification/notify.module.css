@@ -1,0 +1,29 @@
+.notify{
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+    width: 100%;
+    position: fixed;
+    top:80px;
+    left: 0;
+    padding: 10px 8vw;
+}
+
+.error{
+    background: red;
+}
+
+.success{
+    background: green;
+}
+
+.sending{
+    background: rgb(0, 123, 255);
+}
+
+
+
+
+.space{
+    margin-bottom: 120px;
+}
